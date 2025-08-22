@@ -29,24 +29,24 @@ export default function Home() {
   }, []);
 
   // Submit new book
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError("");
-    try {
-      await fetch("http://localhost:4000/books", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
-      setForm({ title: "", author: "" });
-      fetchBooks();
-    } catch {
-      setError("Could not add book.");
-    } finally {
-      setLoading(false);
-    }
-  };
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+  setLoading(true);
+  setError("");
+  try {
+    await fetch(`${API}/books`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(form),
+    });
+    setForm({ title: "", author: "" });
+    fetchBooks();
+  } catch {
+    setError("Could not add book.");
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-gray-100 flex flex-col items-center py-12 px-2">
