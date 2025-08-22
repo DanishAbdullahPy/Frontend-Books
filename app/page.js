@@ -1,6 +1,7 @@
-'use client'; // Enable client-side interactivity
-
+'use client'; 
 import { useEffect, useState } from "react";
+
+const API = process.env.NEXT_PUBLIC_API_URL;
 
 export default function Home() {
   const [books, setBooks] = useState([]);
@@ -12,7 +13,7 @@ export default function Home() {
   const fetchBooks = async () => {
     try {
       setLoading(true);
-      const res = await fetch("http://localhost:4000/books");
+      const res = await fetch(`${API}/books`);
       const data = await res.json();
       setBooks(data);
       setError("");
